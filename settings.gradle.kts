@@ -29,4 +29,4 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include("poker-tracker")
+include(":pokerTracker")
