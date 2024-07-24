@@ -2,10 +2,16 @@ package ch.ascendise.pokertracker
 
 class Player(startingChips: Int) {
 
-    var chips = ChipsBalance(startingChips, this)
+    var balance = ChipsBalanceImpl(startingChips, this)
         private set
 
+    /**
+     * Remove chips from balance to bet on table
+     *
+     * @param amount
+     * @return
+     */
     fun bet(amount: Int): ChipsBalance.Chips {
-        return chips.remove(amount)
+        return balance.withdraw(amount)
     }
 }

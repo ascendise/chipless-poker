@@ -14,7 +14,7 @@ class PlayerTests {
         val bet = player.bet(40)
         //Assert
         assertEquals(40, bet.amount, "Bet has not the correct amount of chips")
-        assertEquals(60, player.chips.balance, "Player chips were not removed")
+        assertEquals(60, player.balance.amount, "Player chips were not removed")
     }
 
     @Test
@@ -25,6 +25,17 @@ class PlayerTests {
         val invalidBet = { player.bet(1000) }
         //Assert
         assertThrows<BalanceOverdrawnException> { invalidBet() }
+        assertEquals(10, player.balance.amount, "Player balance corrupted")
     }
 
+    @Test
+    fun `Creating negative bet should throw exception`() {
+        //Arrange
+        val player = Player(100)
+        //Act
+        val invalidBet = { player.bet(-100) }
+        //Assert
+        assertThrows<IllegalArgumentException> { invalidBet() }
+        assertEquals(100, player.balance.amount, "Player balance corrupted")
+    }
 }
