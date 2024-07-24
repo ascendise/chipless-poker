@@ -9,7 +9,7 @@ import kotlin.math.min
  * @property dealer starting dealer to define paid blinds, active player, etc.
  * @property blinds starting blinds
  */
-class Table(private val players: ArrayList<Player>,
+class Table(private val players: MutableList<Player>,
             private val dealer: Player,
             private val blinds: Blinds = Blinds(1, 2)) {
 
@@ -33,12 +33,18 @@ class Table(private val players: ArrayList<Player>,
         private set
 
     init {
+        if(players.count() < 2)
+            throw IllegalArgumentException("At least two players required for game")
         activePlayer = initActivePlayer()
         payBlinds()
     }
 
     private fun initActivePlayer(): Player {
+        if(players.count() <= 3)
+            return dealer
         val dealerIndex = players.indexOf(dealer)
+        if(dealerIndex == -1)
+            throw IllegalArgumentException("Dealer has to be part of player list")
         val diffToFirstBet = 3
         val activePlayerIndex = rotatingAdd(dealerIndex, diffToFirstBet, players.count())
         return players[activePlayerIndex]

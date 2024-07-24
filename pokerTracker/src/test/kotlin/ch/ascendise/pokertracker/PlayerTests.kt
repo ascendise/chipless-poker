@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 class PlayerTests {
 
     @Test
-    fun `Creating a bet should remove chips from player`() {
+    fun `should remove chips from player when creating a bet`() {
         //Arrange
         val player = Player(100)
         //Act
@@ -18,7 +18,7 @@ class PlayerTests {
     }
 
     @Test
-    fun `Creating invalid bet should throw exception`() {
+    fun `should throw exception when creating a bet that overdraws player balance`() {
         //Arrange
         val player = Player(10)
         //Act
@@ -29,7 +29,7 @@ class PlayerTests {
     }
 
     @Test
-    fun `Creating negative bet should throw exception`() {
+    fun `should throw exception when creating a negative bet`() {
         //Arrange
         val player = Player(100)
         //Act
