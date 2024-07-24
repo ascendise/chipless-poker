@@ -1,4 +1,6 @@
-package ch.ascendise.pokertracker
+package ch.ascendise.pokertracker.chips
+
+import ch.ascendise.pokertracker.Player
 
 /**
  * Tracks chip balance

@@ -1,4 +1,6 @@
-package ch.ascendise.pokertracker
+package ch.ascendise.pokertracker.chips
+
+import ch.ascendise.pokertracker.InvalidPlayException
 
 /**
  * Thrown when a bet would cause the chip balance to go below 0

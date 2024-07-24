@@ -1,5 +1,7 @@
 package ch.ascendise.pokertracker
 
+import ch.ascendise.pokertracker.chips.ChipsBalance
+import ch.ascendise.pokertracker.chips.ChipsBalanceImpl
 import kotlin.math.min
 
 /**

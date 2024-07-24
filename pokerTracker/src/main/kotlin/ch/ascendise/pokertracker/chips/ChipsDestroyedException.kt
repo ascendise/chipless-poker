@@ -1,4 +1,4 @@
-package ch.ascendise.pokertracker
+package ch.ascendise.pokertracker.chips
 
 import java.lang.Exception
 

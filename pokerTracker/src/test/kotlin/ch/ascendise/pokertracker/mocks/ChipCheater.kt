@@ -1,6 +1,6 @@
 package ch.ascendise.pokertracker.mocks
 
-import ch.ascendise.pokertracker.ChipsBalance
+import ch.ascendise.pokertracker.chips.ChipsBalance
 import ch.ascendise.pokertracker.Player
 
 /**

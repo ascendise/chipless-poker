@@ -1,5 +1,8 @@
 package ch.ascendise.pokertracker
 
+import ch.ascendise.pokertracker.chips.BalanceOverdrawnException
+import ch.ascendise.pokertracker.chips.ChipsBalanceImpl
+import ch.ascendise.pokertracker.chips.ChipsDestroyedException
 import ch.ascendise.pokertracker.mocks.ChipCheater
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals

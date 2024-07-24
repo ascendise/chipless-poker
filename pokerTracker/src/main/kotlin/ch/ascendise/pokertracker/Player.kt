@@ -1,5 +1,8 @@
 package ch.ascendise.pokertracker
 
+import ch.ascendise.pokertracker.chips.ChipsBalance
+import ch.ascendise.pokertracker.chips.ChipsBalanceImpl
+
 class Player(startingChips: Int) {
 
     var balance = ChipsBalanceImpl(startingChips, this)
