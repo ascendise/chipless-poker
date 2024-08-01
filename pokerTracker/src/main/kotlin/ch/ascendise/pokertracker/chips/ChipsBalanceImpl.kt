@@ -26,8 +26,8 @@ class ChipsBalanceImpl(startingAmount: Int, owner: Player?) : ChipsBalance(start
 
     private inner class Bet(amount: Int, owner: Player?) : Chips(amount, owner) {
         init {
-            if(amount <= 0)
-                throw IllegalArgumentException("amount cannot be less than 1")
+            if(amount < 0)
+                throw IllegalArgumentException("amount cannot be less than 0")
             val newBalance = this@ChipsBalanceImpl.amount - amount
             if(newBalance < 0) {
                 throw BalanceOverdrawnException(this@ChipsBalanceImpl.amount, amount)
