@@ -1,6 +1,7 @@
 package ch.ascendise.pokertracker.rotation
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -11,7 +12,7 @@ class RotationTests {
     @Test
     fun `should start from beginning when reaching end during iteration`() {
         //Arrange
-        val intRotation = Rotation((0..2).toList())
+        val intRotation = Rotation((0..2).toMutableList())
         //Act
         val items = mutableListOf<Int>()
         var counter = 0
@@ -29,7 +30,7 @@ class RotationTests {
     fun `should throw if rotation is empty`() {
         //Arrange
         //Act
-        val illegalRotation = { Rotation<Int>(emptyList())}
+        val illegalRotation = { Rotation<Int>(mutableListOf())}
         //Assert
         assertThrows<IllegalArgumentException> { illegalRotation() }
     }
@@ -38,7 +39,7 @@ class RotationTests {
     fun `should throw if selected starting index is out of bounds`() {
         //Arrange
         //Act
-        val illegalRotation = { Rotation((0..2).toList(), 420)}
+        val illegalRotation = { Rotation((0..2).toMutableList(), 420)}
         //Assert
         assertThrows<IndexOutOfBoundsException> { illegalRotation() }
     }
@@ -46,7 +47,7 @@ class RotationTests {
     @Test
     fun `should skip to next player by specified steps`() {
         //Arrange
-        val rotation = Rotation((0..4).toList(), 0)
+        val rotation = Rotation((0..4).toMutableList(), 0)
         //Act
         val result = rotation.next(3)
         //Assert
@@ -57,7 +58,7 @@ class RotationTests {
     @ValueSource(ints = [0,1,2,3,4])
     fun `should return specified index on next`(nextIndex: Int) {
         //Arrange
-        val rotation = Rotation((0..4).toList(), 0)
+        val rotation = Rotation((0..4).toMutableList(), 0)
         //Act
         rotation.setNext(nextIndex)
         val result = rotation.next()
@@ -68,7 +69,7 @@ class RotationTests {
     @Test
     fun `should return next item without rotating`() {
         //Arrange
-        val rotation = Rotation((0..4).toList(), 0)
+        val rotation = Rotation((0..4).toMutableList(), 0)
         //Act
         //Assert
         assertEquals(1, rotation.peekNext())
@@ -78,13 +79,23 @@ class RotationTests {
 
     @Test
     fun `should return next item after x steps without rotating`() {
-
         //Arrange
-        val rotation = Rotation((0..4).toList(), 0)
+        val rotation = Rotation((0..4).toMutableList(), 0)
         //Act
         //Assert
         assertEquals(2, rotation.peekNext(2))
         assertEquals(2, rotation.peekNext(2))
         assertEquals(2, rotation.peekNext(2))
+    }
+
+    @Test
+    fun `should remove matching item`() {
+        //Arrange
+        val rotation = Rotation((1..5).toMutableList(), 0)
+        //Act
+        rotation.remove { it == 2 }
+        //Assert
+        assertEquals(rotation.items.count(), 4)
+        assertFalse(rotation.items.contains(2), "Item is still in collection")
     }
 }

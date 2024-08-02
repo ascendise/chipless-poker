@@ -26,7 +26,7 @@ class EndOfRoundRuleTests {
             bigBlind = players[2],
             round = PokerEngine.Round(
                 startingPlayer = players[0],
-                players = Rotation(players.map { PokerEngine.Seat(it, 10) }),
+                players = Rotation(players.map { PokerEngine.Seat(it, 10) }.toMutableList()),
                 name = PokerEngine.BettingRounds.Hole
             ),
             pot = ChipsBalanceImpl(30, null)
@@ -53,7 +53,7 @@ class EndOfRoundRuleTests {
             bigBlind = players[2],
             round = PokerEngine.Round(
                 startingPlayer = players[0],
-                players = Rotation(players.map { PokerEngine.Seat(it, 0) }),
+                players = Rotation(players.map { PokerEngine.Seat(it, 0) }.toMutableList()),
                 name = PokerEngine.BettingRounds.Hole
             ),
             pot = ChipsBalanceImpl(30, null)

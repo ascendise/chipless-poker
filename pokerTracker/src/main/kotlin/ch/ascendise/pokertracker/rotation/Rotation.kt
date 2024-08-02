@@ -1,5 +1,7 @@
 package ch.ascendise.pokertracker.rotation
 
+import java.util.function.Predicate
+
 /**
  * Rotating iterator around the given collection of items.
  * Starting at the given index, the iterator returns the next item in the collection.
@@ -11,7 +13,12 @@ package ch.ascendise.pokertracker.rotation
  * @param T
  * @property items
  */
-class Rotation<T>(val items: List<T>, startingIndex: Int = items.count() - 1) : Iterator<T> {
+class Rotation<T>(items: MutableList<T>, startingIndex: Int = items.count() - 1) : Iterator<T> {
+
+    private val _items: MutableList<T> = items
+    val items: List<T>
+        get() { return _items }
+
 
     private var currentIndex: Int = startingIndex
         set(value) {
@@ -79,5 +86,9 @@ class Rotation<T>(val items: List<T>, startingIndex: Int = items.count() - 1) : 
     fun next(steps: Int = 1): T {
         currentIndex = Rotations.rotatingAdd(currentIndex, steps, items.count() - 1)
         return items[currentIndex]
+    }
+
+    fun remove(predicate: (T) -> Boolean) {
+       _items.removeIf(predicate)
     }
 }
