@@ -1,6 +1,6 @@
 package ch.ascendise.pokertracker.engine
 
-abstract class RulesEngine<State, Command>(
+internal abstract class RulesEngine<State, Command>(
     private val beforeRules: Iterable<Rule<State>> = emptyList(),
     private val afterRules: Iterable<Rule<State>> = emptyList()) {
 

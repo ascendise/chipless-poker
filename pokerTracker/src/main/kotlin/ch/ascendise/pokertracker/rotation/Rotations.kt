@@ -1,6 +1,6 @@
 package ch.ascendise.pokertracker.rotation
 
-object Rotations {
+internal object Rotations {
 
     /**
      * Adds two values. If the sum is more than max, the value resets at 0

@@ -1,7 +1,9 @@
 package ch.ascendise.pokertracker.engine.rules
 
+import ch.ascendise.pokertracker.Blinds
 import ch.ascendise.pokertracker.Player
 import ch.ascendise.pokertracker.chips.ChipsBalanceImpl
+import ch.ascendise.pokertracker.BettingRounds
 import ch.ascendise.pokertracker.engine.PokerEngine
 import ch.ascendise.pokertracker.rotation.Rotation
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,9 +11,8 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
 class EndOfRoundRuleTests {
-
     @Test
-    fun `should proceed to next round if every player has bet the same amount`() {
+    fun `should do nothing when not every player had the chance to bet yet`() {
         //Arrange
         val sut = EndOfRoundRule()
         val players = listOf(
@@ -24,17 +25,19 @@ class EndOfRoundRuleTests {
             dealer = players[0],
             smallBlind = players[1],
             bigBlind = players[2],
+            blinds = Blinds(0, 0),
             round = PokerEngine.Round(
                 startingPlayer = players[0],
-                players = Rotation(players.map { PokerEngine.Seat(it, 10) }.toMutableList()),
-                name = PokerEngine.BettingRounds.Hole
+                players = Rotation(players.map { PokerEngine.Seat(it, 0) }.toMutableList()),
+                name = BettingRounds.Hole,
+                actionCount = 1
             ),
             pot = ChipsBalanceImpl(30, null)
         )
         //Act
         val newState = sut.act(state)
         //Assert
-        assertEquals(PokerEngine.BettingRounds.Flop, newState?.round?.name, "Game is still in old round")
+        assertNull(newState, "Rule was applied!")
     }
 
     @Test
@@ -54,7 +57,8 @@ class EndOfRoundRuleTests {
             round = PokerEngine.Round(
                 startingPlayer = players[0],
                 players = Rotation(players.map { PokerEngine.Seat(it, 0) }.toMutableList()),
-                name = PokerEngine.BettingRounds.Hole
+                name = BettingRounds.Hole,
+                actionCount = 1
             ),
             pot = ChipsBalanceImpl(30, null)
         )
@@ -67,5 +71,62 @@ class EndOfRoundRuleTests {
         val newState = sut.act(state)
         //Assert
         assertNull(newState, "Rule was applied!")
+    }
+
+    @Test
+    fun `should proceed to next round if every player has bet the same amount`() {
+        //Arrange
+        val sut = EndOfRoundRule()
+        val players = listOf(
+            Player(100),
+            Player(100),
+            Player(100)
+        )
+        val state = PokerEngine.State(
+            players = players,
+            dealer = players[0],
+            smallBlind = players[1],
+            bigBlind = players[2],
+            round = PokerEngine.Round(
+                startingPlayer = players[0],
+                players = Rotation(players.map { PokerEngine.Seat(it, 10) }.toMutableList()),
+                name = BettingRounds.Hole,
+                actionCount = 3
+            ),
+            pot = ChipsBalanceImpl(30, null)
+        )
+        //Act
+        val newState = sut.act(state)
+        //Assert
+        assertEquals(BettingRounds.Flop, newState?.round?.name, "Game is still in old round")
+    }
+
+    @Test
+    fun `should select next active player if small blind has folded`() {
+        //Arrange
+        val sut = EndOfRoundRule()
+        val players = listOf(
+            Player(100),
+            Player(100),
+            Player(100)
+        )
+        val state = PokerEngine.State(
+            players = players,
+            dealer = players[0],
+            smallBlind = players[1],
+            bigBlind = players[2],
+            round = PokerEngine.Round(
+                startingPlayer = players[0],
+                players = Rotation(players.map { PokerEngine.Seat(it, 10) }.toMutableList()),
+                name = BettingRounds.Hole,
+                actionCount = 3
+            ),
+            pot = ChipsBalanceImpl(30, null)
+        )
+        state.round.players.remove { it.player == state.smallBlind }
+        //Act
+        val newState = sut.act(state)!!
+        //Assert
+        assertEquals(state.bigBlind, newState.activePlayer)
     }
 }

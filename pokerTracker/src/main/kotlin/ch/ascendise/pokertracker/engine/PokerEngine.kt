@@ -1,13 +1,16 @@
 package ch.ascendise.pokertracker.engine
 
+import ch.ascendise.pokertracker.BettingRounds
+import ch.ascendise.pokertracker.Blinds
 import ch.ascendise.pokertracker.Player
 import ch.ascendise.pokertracker.chips.ChipsBalance
+import ch.ascendise.pokertracker.engine.commands.PlayerCommand
 import ch.ascendise.pokertracker.engine.rules.EndOfRoundRule
 import ch.ascendise.pokertracker.rotation.Rotation
 import ch.ascendise.pokertracker.rotation.Rotations
 import kotlin.jvm.optionals.getOrElse
 
-class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>(afterRules = getAfterRules()) {
+internal class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>(afterRules = getAfterRules()) {
 
     companion object {
         private fun getAfterRules(): Iterable<Rule<State>>
@@ -18,6 +21,15 @@ class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>(afterRul
 
     override fun onExecute(command: Command) {
         state = command.execute(state)
+        if(command is PlayerCommand) {
+            state!!.round.actionCount++
+            state!!.rotateActivePlayer()
+        }
+    }
+
+
+    private fun State.rotateActivePlayer() {
+        round.activePlayer = round.players.next()
     }
 
     /**
@@ -49,13 +61,6 @@ class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>(afterRul
         fun execute(state: State?): State
     }
 
-    data class Blinds(val small: Int, val big: Int) {
-        init {
-           if(small > big)
-               throw IllegalArgumentException("Big Blinds cannot be less than small blinds")
-        }
-    }
-
     /**
      * Betting round. Part of a poker game
      *
@@ -67,7 +72,8 @@ class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>(afterRul
     data class Round(val players: Rotation<Seat>,
                      val startingPlayer: Player,
                      val name: BettingRounds,
-                     var activePlayer: Seat = getSeat(players, startingPlayer)) {
+                     var activePlayer: Seat = getSeat(players, startingPlayer),
+                     var actionCount: Int = 0) {
 
         val highestBet: Int
             get() = players.items.stream().mapToInt { it.bets }.max().asInt
@@ -98,10 +104,4 @@ class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>(afterRul
 
     data class Seat(val player: Player, var bets: Int = 0)
 
-    enum class BettingRounds {
-        Hole, //Two cards dealt
-        Flop, //Three community cards
-        Turn, //Four community cards
-        River //Five community cards
-    }
 }

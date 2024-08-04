@@ -1,6 +1,6 @@
 package ch.ascendise.pokertracker.engine
 
-abstract class Rule<State> {
+internal abstract class Rule<State> {
 
     /**
      * Evaluates current state and applies changes if applicable

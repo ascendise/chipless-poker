@@ -13,7 +13,7 @@ import java.util.function.Predicate
  * @param T
  * @property items
  */
-class Rotation<T>(items: MutableList<T>, startingIndex: Int = items.count() - 1) : Iterator<T> {
+internal class Rotation<T>(items: MutableList<T>, startingIndex: Int = items.count() - 1) : Iterator<T> {
 
     private val _items: MutableList<T> = items
     val items: List<T>
@@ -89,6 +89,9 @@ class Rotation<T>(items: MutableList<T>, startingIndex: Int = items.count() - 1)
     }
 
     fun remove(predicate: (T) -> Boolean) {
+        val count = _items.count()
        _items.removeIf(predicate)
+        val newCount = _items.count()
+        setNext(Rotations.rotatingSub(currentIndex, count - newCount, newCount))
     }
 }

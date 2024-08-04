@@ -1,8 +1,10 @@
 package ch.ascendise.pokertracker.engine.commands
 
+import ch.ascendise.pokertracker.Blinds
 import ch.ascendise.pokertracker.Player
 import ch.ascendise.pokertracker.chips.ChipsBalance
 import ch.ascendise.pokertracker.chips.ChipsBalanceImpl
+import ch.ascendise.pokertracker.BettingRounds
 import ch.ascendise.pokertracker.engine.PokerEngine
 import ch.ascendise.pokertracker.rotation.Rotation
 import ch.ascendise.pokertracker.rotation.Rotations
@@ -14,10 +16,10 @@ import ch.ascendise.pokertracker.rotation.Rotations
  * @property dealer starting dealer for the game
  * @property blinds
  */
-data class InitCommand(
-    val players: List<Player>,
+internal class InitCommand(
+    val players: MutableList<Player>,
     val dealer: Player,
-    val blinds: PokerEngine.Blinds = PokerEngine.Blinds(1, 2)
+    val blinds: Blinds = Blinds(1, 2)
     ) : PokerEngine.Command {
 
     init {
@@ -28,19 +30,32 @@ data class InitCommand(
     }
 
     override fun execute(state: PokerEngine.State?): PokerEngine.State {
-        val seats = players.stream().map { PokerEngine.Seat(it) }.toList()
+        val seats = players.stream().map { PokerEngine.Seat(it) }
+            .toList().toMutableList()
         val rotation = Rotation(seats, 0)
         val newState = PokerEngine.State(
             players = players,
             dealer = dealer,
-            smallBlind = rotation.peekNext().player,
-            bigBlind = rotation.peekNext(2).player,
+            smallBlind = getSmallBlind(),
+            bigBlind = getBigBlind(),
             blinds = blinds,
             pot = ChipsBalanceImpl(0, null),
-            round = PokerEngine.Round(rotation, getActivePlayer(), PokerEngine.BettingRounds.Hole)
+            round = PokerEngine.Round(rotation, getActivePlayer(), BettingRounds.Hole)
         )
         payBlinds(newState)
         return newState
+    }
+
+    private fun getSmallBlind(): Player {
+        if(players.count() == 2)
+            return dealer
+        return players[Rotations.rotatingAdd(players.indexOf(dealer), 1, players.count() - 1)]
+    }
+
+    private fun getBigBlind(): Player {
+        if(players.count() == 2)
+            return players[Rotations.rotatingAdd(players.indexOf(dealer), 1, players.count() - 1)]
+        return players[Rotations.rotatingAdd(players.indexOf(dealer), 2, players.count() - 1)]
     }
 
     private fun payBlinds(state: PokerEngine.State) {

@@ -1,7 +1,7 @@
 package ch.ascendise.pokertracker.engine.commands
 
+import ch.ascendise.pokertracker.Blinds
 import ch.ascendise.pokertracker.Player
-import ch.ascendise.pokertracker.engine.PokerEngine
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertSame
@@ -47,7 +47,7 @@ class InitCommandTests {
             Player(100)
         )
         //Act
-        val initCommand = InitCommand(players, players.first(), PokerEngine.Blinds(5, 10))
+        val initCommand = InitCommand(players, players.first(), Blinds(5, 10))
         val state = initCommand.execute(null)
         //Assert
         assertSame(players[1], state.smallBlind)
@@ -88,7 +88,7 @@ class InitCommandTests {
             Player(100)
         )
         //Act
-        val initCommand = InitCommand(players, players.first(), PokerEngine.Blinds(0, 0))
+        val initCommand = InitCommand(players, players.first(), Blinds(0, 0))
         val createEngineWithoutBlinds = { initCommand.execute(null) }
         //Assert
         assertDoesNotThrow { createEngineWithoutBlinds() }
@@ -102,7 +102,7 @@ class InitCommandTests {
             Player(100)
         )
         //Act
-        val initCommand = InitCommand(players, players.first(), PokerEngine.Blinds(5, 10))
+        val initCommand = InitCommand(players, players.first(), Blinds(5, 10))
         val state = initCommand.execute(null)
         //Assert
         assertEquals(5, state.round.getSeat(state.smallBlind).bets)

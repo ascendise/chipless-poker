@@ -1,12 +1,12 @@
 package ch.ascendise.pokertracker.engine.commands
 
-import ch.ascendise.pokertracker.GameNotInitalizedException
+import ch.ascendise.pokertracker.Blinds
 import ch.ascendise.pokertracker.Player
 import ch.ascendise.pokertracker.chips.ChipsBalanceImpl
+import ch.ascendise.pokertracker.BettingRounds
 import ch.ascendise.pokertracker.engine.InvalidStateException
 import ch.ascendise.pokertracker.engine.PokerEngine
 import ch.ascendise.pokertracker.rotation.Rotation
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -26,10 +26,10 @@ class CheckCommandTests {
             smallBlind = players[0],
             bigBlind = players[1],
             pot = ChipsBalanceImpl(10, null),
-            blinds = PokerEngine.Blinds(0, 0),
+            blinds = Blinds(0, 0),
             round = PokerEngine.Round(
                 players = rotation,
-                name = PokerEngine.BettingRounds.Hole,
+                name = BettingRounds.Hole,
                 startingPlayer =  players[0],
                 activePlayer = rotation.items[1]
             )
@@ -41,34 +41,4 @@ class CheckCommandTests {
         //Assert
         assertThrows<InvalidStateException> { illegalAction() }
     }
-
-    @Test
-    fun `should rotate active player on check`() {
-        //Arrange
-        val players = listOf(
-            Player(100),
-            Player(100)
-        )
-        val rotation = Rotation(players.map { PokerEngine.Seat(it, 0) }.toMutableList(), 1)
-        val state = PokerEngine.State(
-            players = players,
-            dealer = players[0],
-            smallBlind = players[0],
-            bigBlind = players[1],
-            pot = ChipsBalanceImpl(0, null),
-            blinds = PokerEngine.Blinds(0, 0),
-            round = PokerEngine.Round(
-                players = rotation,
-                name = PokerEngine.BettingRounds.Hole,
-                startingPlayer =  players[0],
-                activePlayer = rotation.items[0]
-            )
-        )
-        //Act
-        val command = CheckCommand()
-        val newState = command.execute(state)
-        //Assert
-        assertEquals(players[1], newState.activePlayer)
-    }
-
 }

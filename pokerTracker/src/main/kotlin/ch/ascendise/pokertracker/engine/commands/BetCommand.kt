@@ -1,9 +1,7 @@
 package ch.ascendise.pokertracker.engine.commands
 
-import ch.ascendise.pokertracker.GameNotInitalizedException
-import ch.ascendise.pokertracker.WrongPlayerException
+import ch.ascendise.pokertracker.engine.WrongPlayerException
 import ch.ascendise.pokertracker.chips.ChipsBalance
-import ch.ascendise.pokertracker.engine.InvalidStateException
 import ch.ascendise.pokertracker.engine.PokerEngine
 
 /**
@@ -11,13 +9,12 @@ import ch.ascendise.pokertracker.engine.PokerEngine
  *
  * @property chips
  */
-class BetCommand(val chips: ChipsBalance.Chips) : PlayerCommand() {
+internal class BetCommand(val chips: ChipsBalance.Chips) : PlayerCommand() {
 
     override fun onExecute(state: PokerEngine.State): PokerEngine.State {
         assertValidMove(state)
         with(state) {
             placeBet()
-            rotateActivePlayer()
         }
         return state
     }
@@ -25,10 +22,6 @@ class BetCommand(val chips: ChipsBalance.Chips) : PlayerCommand() {
     private fun PokerEngine.State.placeBet() {
         round.activePlayer.bets += chips.amount
         pot.deposit(chips)
-    }
-
-    private fun PokerEngine.State.rotateActivePlayer() {
-        round.activePlayer = round.players.next()
     }
 
     private fun assertValidMove(state: PokerEngine.State) {

@@ -1,13 +1,13 @@
 package ch.ascendise.pokertracker.engine.commands
 
-import ch.ascendise.pokertracker.GameNotInitalizedException
+import ch.ascendise.pokertracker.engine.GameNotInitializedException
 import ch.ascendise.pokertracker.engine.PokerEngine
 
-abstract class PlayerCommand : PokerEngine.Command {
+internal abstract class PlayerCommand : PokerEngine.Command {
 
     final override fun execute(state: PokerEngine.State?): PokerEngine.State {
         if(state == null)
-            throw GameNotInitalizedException()
+            throw GameNotInitializedException()
         return onExecute(state)
     }
 
