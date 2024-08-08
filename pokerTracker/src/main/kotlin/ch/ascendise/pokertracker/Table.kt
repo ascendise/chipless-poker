@@ -21,11 +21,13 @@ class Table(players: MutableList<Player>, startingDealer: Player, blinds: Blinds
 
     private val pokerEngine = PokerEngine()
 
-    val gameInfo: GameInfo
-        get() = toGameInfo(pokerEngine.state!!)
+    val gameInfo: GameInfo?
+        get() = toGameInfo(pokerEngine.state)
 
-    private fun toGameInfo(state: PokerEngine.State): GameInfo
-        = GameInfo(
+    private fun toGameInfo(state: PokerEngine.State?): GameInfo? {
+        if(state == null)
+            return null
+        return GameInfo(
             state.activePlayer,
             state.dealer,
             state.smallBlind,
@@ -34,6 +36,8 @@ class Table(players: MutableList<Player>, startingDealer: Player, blinds: Blinds
             state.blinds,
             state.pot.amount
         )
+    }
+
 
     init {
         val initCommand = InitCommand(players, startingDealer, blinds)

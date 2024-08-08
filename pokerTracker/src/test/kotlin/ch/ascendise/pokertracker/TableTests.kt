@@ -19,7 +19,7 @@ class TableTests {
         //Act
         val table = Table(players, players[1], Blinds(1, 2))
         //Assert
-        with(table.gameInfo) {
+        with(table.gameInfo!!) {
             assertEquals(players[0], activePlayer, "Wrong active player")
             assertEquals(players[1], dealer, "Wrong dealer")
             assertEquals(players[2], smallBlind, "Wrong small blind")
@@ -42,7 +42,7 @@ class TableTests {
         table.call()
         table.check()
         //Assert
-        with(table.gameInfo) {
+        with(table.gameInfo!!) {
             assertEquals(players[0], dealer, "Wrong dealer")
             assertEquals(players[0], smallBlind, "Wrong small blind")
             assertEquals(players[1], bigBlind, "Wrong big blind")
@@ -65,14 +65,14 @@ class TableTests {
         table.call()
         table.check()
             //Flop
-        table.raise(table.gameInfo.activePlayer.bet(4))
+        table.raise(table.gameInfo!!.activePlayer.bet(4))
         table.call()
             //Turn
         table.check()
         table.check()
             //River
         //Assert
-        with(table.gameInfo) {
+        with(table.gameInfo!!) {
             assertEquals(players[1], activePlayer, "Wrong active player")
             assertEquals(BettingRounds.River, round, "Wrong round")
             assertEquals(Blinds(1, 2), blinds, "Wrong blinds set")
@@ -99,7 +99,7 @@ class TableTests {
         table.check()
             //Turn
         //Assert
-        with(table.gameInfo) {
+        with(table.gameInfo!!) {
             assertEquals(players[2], activePlayer, "Wrong active player")
             assertEquals(BettingRounds.Turn, round, "Wrong round")
             assertEquals(Blinds(1, 2), blinds, "Wrong blinds set")
@@ -116,14 +116,16 @@ class TableTests {
         )
         val table = Table(players, players[0], Blinds(1, 2))
         //Act
-        table.raise(table.gameInfo.activePlayer.bet(4))
-        table.call()
-        table.fold()
+            //Starting Player is Dealer
+        table.raise(table.gameInfo!!.activePlayer.bet(4)) //Dealer 96 ; Pot 7
+        table.call() //Small Blind 96 ; Pot 10
+        table.fold() //Big Blind 98
         //Flop
-        table.raise(table.gameInfo.activePlayer.bet(4))
-        table.fold()
+            //Starting Player is Small Blind
+        table.raise(table.gameInfo!!.activePlayer.bet(4)) //Small Blind 92 ; Pot 14
+        table.fold() //Dealer 96 ;
         //Assert
         assertNull(table.gameInfo, "Game is still going!")
-        assertEquals(110, players[0].balance.amount)
+        assertEquals(106, players[1].balance.amount)
     }
 }

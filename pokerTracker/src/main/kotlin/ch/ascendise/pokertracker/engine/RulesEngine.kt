@@ -10,9 +10,15 @@ internal abstract class RulesEngine<State, Command>(
     protected abstract fun onExecute(command: Command)
 
     fun execute(command: Command) {
-        beforeRules.onEach { it.act(state) }
+        beforeRules.onEach { applyRules(it) }
         onExecute(command)
-        afterRules.onEach { it.act(state) }
+        afterRules.onEach { applyRules(it) }
+    }
+
+    private fun applyRules(rule: Rule<State>) {
+        val result = rule.act(state)
+        if(result.applied)
+           state = result.state
     }
 
 }
