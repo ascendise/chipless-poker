@@ -7,7 +7,9 @@ import ch.ascendise.pokertracker.BettingRounds
 import ch.ascendise.pokertracker.engine.PokerEngine
 import ch.ascendise.pokertracker.rotation.Rotation
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class EndOfRoundRuleTests {
@@ -35,9 +37,9 @@ class EndOfRoundRuleTests {
             pot = ChipsBalanceImpl(30, null)
         )
         //Act
-        val newState = sut.act(state)
+        val result = sut.act(state)
         //Assert
-        assertNull(newState, "Rule was applied!")
+        assertFalse(result.applied, "Rule was applied!")
     }
 
     @Test
@@ -68,9 +70,9 @@ class EndOfRoundRuleTests {
                 .bets = 50
         }
         //Act
-        val newState = sut.act(state)
+        val result = sut.act(state)
         //Assert
-        assertNull(newState, "Rule was applied!")
+        assertFalse(result.applied, "Rule was applied!")
     }
 
     @Test
@@ -96,9 +98,10 @@ class EndOfRoundRuleTests {
             pot = ChipsBalanceImpl(30, null)
         )
         //Act
-        val newState = sut.act(state)
+        val result = sut.act(state)
         //Assert
-        assertEquals(BettingRounds.Flop, newState?.round?.name, "Game is still in old round")
+        assertTrue(result.applied, "Rule was not applied!")
+        assertEquals(BettingRounds.Flop, result.state?.round?.name, "Game is still in old round")
     }
 
     @Test
@@ -125,8 +128,9 @@ class EndOfRoundRuleTests {
         )
         state.round.players.remove { it.player == state.smallBlind }
         //Act
-        val newState = sut.act(state)!!
+        val result = sut.act(state)
         //Assert
-        assertEquals(state.bigBlind, newState.activePlayer)
+        assertTrue(result.applied, "Rule was not applied!")
+        assertEquals(state.bigBlind, result.state!!.activePlayer)
     }
 }

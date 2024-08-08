@@ -1,6 +1,7 @@
 package ch.ascendise.pokertracker
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
 class TableTests {
@@ -103,5 +104,26 @@ class TableTests {
             assertEquals(BettingRounds.Turn, round, "Wrong round")
             assertEquals(Blinds(1, 2), blinds, "Wrong blinds set")
         }
+    }
+
+    @Test
+    fun `should automatically move pot to winner if all players folded`() {
+        //Arrange
+        val players = mutableListOf(
+            Player(100),
+            Player(100),
+            Player(100)
+        )
+        val table = Table(players, players[0], Blinds(1, 2))
+        //Act
+        table.raise(table.gameInfo.activePlayer.bet(4))
+        table.call()
+        table.fold()
+        //Flop
+        table.raise(table.gameInfo.activePlayer.bet(4))
+        table.fold()
+        //Assert
+        assertNull(table.gameInfo, "Game is still going!")
+        assertEquals(110, players[0].balance.amount)
     }
 }
