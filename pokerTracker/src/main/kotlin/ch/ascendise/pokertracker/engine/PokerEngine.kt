@@ -6,6 +6,7 @@ import ch.ascendise.pokertracker.Player
 import ch.ascendise.pokertracker.chips.ChipsBalance
 import ch.ascendise.pokertracker.engine.commands.PlayerCommand
 import ch.ascendise.pokertracker.engine.rules.EndOfRoundRule
+import ch.ascendise.pokertracker.engine.rules.RewardWinnerRule
 import ch.ascendise.pokertracker.rotation.Rotation
 import ch.ascendise.pokertracker.rotation.Rotations
 import kotlin.jvm.optionals.getOrElse
@@ -15,6 +16,7 @@ internal class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>
     companion object {
         private fun getAfterRules(): Iterable<Rule<State>>
             = listOf(
+                RewardWinnerRule(),
                 EndOfRoundRule()
             )
     }
@@ -58,7 +60,7 @@ internal class PokerEngine : RulesEngine<PokerEngine.State, PokerEngine.Command>
     }
 
     interface Command {
-        fun execute(state: State?): State
+        fun execute(state: State?): State?
     }
 
     /**

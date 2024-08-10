@@ -6,6 +6,7 @@ import ch.ascendise.pokertracker.engine.commands.BetCommand
 import ch.ascendise.pokertracker.engine.commands.CheckCommand
 import ch.ascendise.pokertracker.engine.commands.FoldCommand
 import ch.ascendise.pokertracker.engine.commands.InitCommand
+import ch.ascendise.pokertracker.engine.commands.SelectWinnerCommand
 
 /**
  * Main interface of the poker game
@@ -21,11 +22,13 @@ class Table(players: MutableList<Player>, startingDealer: Player, blinds: Blinds
 
     private val pokerEngine = PokerEngine()
 
-    val gameInfo: GameInfo
-        get() = toGameInfo(pokerEngine.state!!)
+    val gameInfo: GameInfo?
+        get() = toGameInfo(pokerEngine.state)
 
-    private fun toGameInfo(state: PokerEngine.State): GameInfo
-        = GameInfo(
+    private fun toGameInfo(state: PokerEngine.State?): GameInfo? {
+        if(state == null)
+            return null
+        return GameInfo(
             state.activePlayer,
             state.dealer,
             state.smallBlind,
@@ -34,6 +37,8 @@ class Table(players: MutableList<Player>, startingDealer: Player, blinds: Blinds
             state.blinds,
             state.pot.amount
         )
+    }
+
 
     init {
         val initCommand = InitCommand(players, startingDealer, blinds)
@@ -74,6 +79,13 @@ class Table(players: MutableList<Player>, startingDealer: Player, blinds: Blinds
      */
     fun fold() {
         pokerEngine.execute(FoldCommand())
+    }
+
+    /**
+     * Selects winner of the game
+     */
+    fun selectWinner(player: Player) {
+        pokerEngine.execute(SelectWinnerCommand(player))
     }
 
 }

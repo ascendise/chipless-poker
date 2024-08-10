@@ -8,11 +8,11 @@ internal abstract class Rule<State> {
      * @param state
      * @return new state or null if rule was not applied
      */
-    fun act(state: State?): State? {
+    fun act(state: State?): Result<State?> {
         if(evaluate(state)) {
-            return apply(state)
+            return apply(state).let { Result.applied(it) }
         }
-        return null
+        return Result.none()
     }
 
     /**
@@ -27,4 +27,20 @@ internal abstract class Rule<State> {
      * @param state
      */
     protected abstract fun apply(state: State?): State?
+
+    data class Result<State>(
+        val applied: Boolean,
+        val state: State?) {
+
+        companion object {
+
+            fun <State> applied(state: State)
+                = Result<State>(true, state)
+
+            fun <State> none()
+                    = Result<State>(false, null)
+
+        }
+
+    }
 }
