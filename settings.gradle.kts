@@ -28,5 +28,5 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
-include(":pokerTracker")
+include(":shared:composeApp")
+include(":shared:pokertracker")
