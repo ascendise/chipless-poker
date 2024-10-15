@@ -1,18 +1,12 @@
-package ch.ascendise.chipless.views.games
+package ch.ascendise.chipless.views.gamemanagement
 
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.layout.AlignmentLine
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.test.*
 import chiplesspoker.shared.composeapp.generated.resources.Res
 import chiplesspoker.shared.composeapp.generated.resources.add_1_players
 import chiplesspoker.shared.composeapp.generated.resources.add_2_players
 import chiplesspoker.shared.composeapp.generated.resources.add_player_button
 import chiplesspoker.shared.composeapp.generated.resources.create_game
-import chiplesspoker.shared.composeapp.generated.resources.create_new_game_button
 import org.jetbrains.compose.resources.stringResource
-import kotlin.test.DefaultAsserter.assertEquals
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame

@@ -1,13 +1,9 @@
 package ch.ascendise.chipless.widgets
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.RadioButton
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,9 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.unit.dp
 import ch.ascendise.chipless.components.FormTextField
-import ch.ascendise.chipless.views.games.CreatePlayerModel
+import ch.ascendise.chipless.views.gamemanagement.CreatePlayerModel
 import chiplesspoker.shared.composeapp.generated.resources.Res
 import chiplesspoker.shared.composeapp.generated.resources.player_name
 import org.jetbrains.compose.resources.stringResource
@@ -45,11 +40,8 @@ fun PlayerInfoWidget(
         )
         Row(modifier = Modifier.align(Alignment.CenterEnd),
             verticalAlignment = Alignment.CenterVertically) {
-            if(isDealer) {
-                Text(
-                    text = "(Dealer)",
-                    color = Color.White)
-            }
+            if(isDealer)
+                Text(text = "(Dealer)")
             RadioButton(
                 selected = isDealer,
                 modifier = Modifier.testTag("setAsDealer(${player.name})"),

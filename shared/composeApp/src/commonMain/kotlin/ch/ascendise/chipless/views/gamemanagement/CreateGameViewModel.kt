@@ -1,4 +1,4 @@
-package ch.ascendise.chipless.views.games
+package ch.ascendise.chipless.views.gamemanagement
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -29,10 +29,10 @@ class CreateGameViewModel : ViewModel() {
     }
 
     data class State(
-        var players: SnapshotStateList<CreatePlayerModel> = mutableStateListOf(),
-        var playersLeft: MutableState<Int> = mutableStateOf(2),
-        var dealer: MutableState<CreatePlayerModel?> = mutableStateOf(null),
-        var balancePerPlayer: MutableState<Int> = mutableStateOf(100)
+        val players: SnapshotStateList<CreatePlayerModel> = mutableStateListOf(),
+        val playersLeft: MutableState<Int> = mutableStateOf(2),
+        val dealer: MutableState<CreatePlayerModel?> = mutableStateOf(null),
+        val balancePerPlayer: MutableState<Int> = mutableStateOf(100)
     )
 }
 

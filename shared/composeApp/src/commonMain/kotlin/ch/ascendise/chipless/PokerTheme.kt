@@ -3,11 +3,13 @@ package ch.ascendise.chipless
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ProvideTextStyle
 import androidx.compose.material.Surface
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import chiplesspoker.shared.composeapp.generated.resources.Oswald_Bold
 import chiplesspoker.shared.composeapp.generated.resources.Oswald_Regular
@@ -35,13 +37,17 @@ internal fun PokerTheme(modifier: Modifier = Modifier, content: @Composable () -
         ),
         colors = MaterialTheme.colors.copy(
             primary = Color(0, 160, 0),
-        )
+
+        ),
     ) {
         Surface(
             modifier = modifier,
             color = Color(35, 35, 35),
         ) {
-            content()
+            ProvideTextStyle(
+                value = TextStyle(Color.White),
+                content = content
+            )
         }
     }
 }

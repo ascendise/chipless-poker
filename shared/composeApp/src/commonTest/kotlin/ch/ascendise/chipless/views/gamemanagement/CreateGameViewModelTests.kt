@@ -1,4 +1,4 @@
-package ch.ascendise.chipless.views.games
+package ch.ascendise.chipless.views.gamemanagement
 
 import kotlin.test.*
 

@@ -21,7 +21,7 @@ fun MenuButton(
 
     OutlinedButton(
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor, contentColor = Color.White),
+        colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor),
         modifier = modifier,
         border = BorderStroke(2.dp, Color.White),
         shape = RoundedCornerShape(32.dp),

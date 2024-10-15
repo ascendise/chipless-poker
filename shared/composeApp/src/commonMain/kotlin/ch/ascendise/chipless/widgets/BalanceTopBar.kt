@@ -5,7 +5,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -19,7 +18,7 @@ fun BalanceTopBar(
     val fontSize = 6.em
     TopAppBar(
         title = {
-            Text("Player Balance: ", color = Color.White, fontSize = fontSize)
+            Text("Player Balance: ", fontSize = fontSize)
             TextField(
                 value = balance.toString(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),

@@ -23,7 +23,6 @@ fun FormTextField(
         label = { Text(caption) },
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color(61, 61, 61),
-            textColor = Color.White
         ),
         shape = RoundedCornerShape(16.dp),
         modifier = modifier

@@ -10,9 +10,9 @@ import ch.ascendise.chipless.navigation.NavigatorImpl
 import ch.ascendise.chipless.views.SettingsView
 import ch.ascendise.chipless.views.StartScreenView
 import ch.ascendise.chipless.views.StartScreenViewModel
-import ch.ascendise.chipless.views.games.CreateGameView
-import ch.ascendise.chipless.views.games.CreateGameViewModel
-import ch.ascendise.chipless.views.games.LoadGamesView
+import ch.ascendise.chipless.views.gamemanagement.CreateGameView
+import ch.ascendise.chipless.views.gamemanagement.CreateGameViewModel
+import ch.ascendise.chipless.views.gamemanagement.LoadGamesView
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable

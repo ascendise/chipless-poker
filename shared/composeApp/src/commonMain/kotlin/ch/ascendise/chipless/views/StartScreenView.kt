@@ -24,7 +24,7 @@ internal fun StartScreenView(viewModel: StartScreenViewModel) {
         modifier = Modifier.padding(horizontal = 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
         Row(modifier = Modifier.padding(vertical = 80.dp)) {
-            Text(stringResource(Res.string.chipless_poker), color = Color.White)
+            Text(stringResource(Res.string.chipless_poker))
         }
         Row {
             Column {
