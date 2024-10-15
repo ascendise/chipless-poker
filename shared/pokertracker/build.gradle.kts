@@ -18,7 +18,7 @@ kotlin {
     iosSimulatorArm64()
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation(kotlin("stdlib"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

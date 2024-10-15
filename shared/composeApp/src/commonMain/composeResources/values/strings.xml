@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="chipless-poker">Chipless Poker</string>
+    <string name="create-new-game-button">Create new Game (TBD)</string>
+    <string name="load-existing-game-button">Load existing Game (TBD)</string>
+    <string name="settings-button">Settings</string>
+    <string name="add-2-players">Add 2 players</string>
+    <string name="add-1-players">Add 1 player</string>
+    <string name="add-player-button">+</string>
+    <string name="configure-game">Configure Game</string>
+    <string name="create-game">Create Game</string>
+    <string name="player-name">Player name</string>
+</resources>

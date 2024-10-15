@@ -1,13 +1,11 @@
 name: Test App
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push]
 
 jobs:
   build:
+    env:
+      RUNNER_TOOL_CACHE: /toolcache
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -18,9 +16,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Make gradlew executable
         run: chmod u+x gradlew
-      - name: Build with Gradle Wrapper
-        run: ./gradlew build -i
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 24
+          script: ./gradlew run :shared:composeApp:connectAndroidTest
