@@ -145,7 +145,7 @@ class CreateGameViewTests {
         //Assert
         onNodeWithText("(Dealer)").assertExists()
         onNodeWithTag("setAsDealer(Player #1)").assertIsSelected()
-        assertSame(viewModel.state.players.first(), viewModel.state.dealer.value)
+        assertEquals(0, viewModel.state.dealer.value)
     }
 
     @OptIn(ExperimentalTestApi::class)
@@ -168,8 +168,8 @@ class CreateGameViewTests {
         //Act
         onNodeWithTag("setAsDealer(Player #2)").performClick()
         //Assert
-        assertEquals("Player #2", viewModel.state.dealer.value!!.name)
         onNodeWithTag("setAsDealer(Player #2)").assertIsSelected()
+        assertEquals(1, viewModel.state.dealer.value)
     }
 
     @OptIn(ExperimentalTestApi::class)
