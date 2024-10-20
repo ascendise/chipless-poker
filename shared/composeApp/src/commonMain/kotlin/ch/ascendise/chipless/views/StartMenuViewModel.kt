@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import ch.ascendise.chipless.Routes
 import ch.ascendise.chipless.navigation.Navigator
 
-internal class StartScreenViewModel(private val navigator: Navigator): ViewModel() {
+internal class StartMenuViewModel(private val navigator: Navigator): ViewModel() {
 
     /**
      * Opens the view to create a new game

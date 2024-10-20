@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import ch.ascendise.chipless.navigation.NavigatorImpl
 import ch.ascendise.chipless.views.SettingsView
 import ch.ascendise.chipless.views.StartScreenView
-import ch.ascendise.chipless.views.StartScreenViewModel
+import ch.ascendise.chipless.views.StartMenuViewModel
 import ch.ascendise.chipless.views.gamemanagement.CreateGameView
 import ch.ascendise.chipless.views.gamemanagement.CreateGameViewModel
 import ch.ascendise.chipless.views.gamemanagement.LoadGamesView
@@ -23,7 +23,7 @@ fun App() {
     PokerTheme(modifier = Modifier.fillMaxSize()) {
         NavHost(navController = navController, startDestination = Routes.Start.name) {
             composable(Routes.Start.name) {
-                StartScreenView(StartScreenViewModel(navigator))
+                StartScreenView(StartMenuViewModel(navigator))
             }
             composable(Routes.NewGame.name) {
                 val viewModel = CreateGameViewModel()
