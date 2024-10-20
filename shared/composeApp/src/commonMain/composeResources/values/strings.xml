@@ -9,6 +9,6 @@
     <string name="add-1-players">Add 1 player</string>
     <string name="add-player-button">+</string>
     <string name="configure-game">Configure Game</string>
-    <string name="create-game">Create Game</string>
+    <string name="start-game">Start Game</string>
     <string name="player-name">Player name</string>
 </resources>

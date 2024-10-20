@@ -31,6 +31,7 @@ fun App() {
                     onCreateNewPlayer = viewModel::createNewPlayer,
                     onDeletePlayer = viewModel::deletePlayer,
                     onChangeDealer = viewModel::changeDealer,
+                    onStartGame = { viewModel.createGame() },
                     state = viewModel.state
                 )
             }

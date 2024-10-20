@@ -5,7 +5,7 @@ import chiplesspoker.shared.composeapp.generated.resources.Res
 import chiplesspoker.shared.composeapp.generated.resources.add_1_players
 import chiplesspoker.shared.composeapp.generated.resources.add_2_players
 import chiplesspoker.shared.composeapp.generated.resources.add_player_button
-import chiplesspoker.shared.composeapp.generated.resources.create_game
+import chiplesspoker.shared.composeapp.generated.resources.start_game
 import org.jetbrains.compose.resources.stringResource
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -62,7 +62,7 @@ class CreateGameViewTests {
                 state = viewModel.state
             )
             addPlayerButton = stringResource(Res.string.add_player_button)
-            createNewGameButton = stringResource(Res.string.create_game)
+            createNewGameButton = stringResource(Res.string.start_game)
         }
         //Act
         onNodeWithText(addPlayerButton).performClick()
@@ -192,7 +192,7 @@ class CreateGameViewTests {
 
     @OptIn(ExperimentalTestApi::class)
     @Test
-    fun shouldNotKillTheAppWhenClearingTheBalanceFieldBecauseItCantCastEmptyStringToInt() = runComposeUiTest {
+    fun shouldNotCrashTheAppWhenClearingTheBalanceFieldBecauseItCantCastEmptyStringToInt() = runComposeUiTest {
         //Arrange
         val viewModel = CreateGameViewModel()
         setContent {
@@ -207,4 +207,31 @@ class CreateGameViewTests {
         //Assert
         assertEquals(0, viewModel.state.balancePerPlayer.value)
     }
+
+    @OptIn(ExperimentalTestApi::class)
+    @Test
+    fun shouldCreateGame() = runComposeUiTest {
+        //Arrange
+        val viewModel = CreateGameViewModel()
+        var addPlayerButton = ""
+        var startGame = ""
+        setContent {
+            CreateGameView(
+                onCreateNewPlayer = viewModel::createNewPlayer,
+                onChangeDealer = viewModel::changeDealer,
+                onStartGame = viewModel::createGame,
+                state = viewModel.state
+            )
+            addPlayerButton = stringResource(Res.string.add_player_button)
+            startGame = stringResource(Res.string.start_game)
+        }
+        onNodeWithText(addPlayerButton).performClick()
+        onNodeWithText(addPlayerButton).performClick()
+        //Act
+        onNodeWithText(startGame).performClick()
+        //Assert
+        //TODO: Check that a correct game is created when the UI for the game is being made
+        //For now just tests that creating a game does not kill the app :)
+    }
+
 }
