@@ -13,7 +13,7 @@ import sh.calvin.reorderable.ReorderableColumn
 @Composable
 fun PlayerList(
     players: MutableList<CreatePlayerModel>,
-    dealer: CreatePlayerModel?,
+    dealer: Int?,
     onDeletePlayer: (CreatePlayerModel) -> Unit = {},
     onChangeDealer: (Int) -> Unit = {},
 ) {
@@ -34,7 +34,7 @@ fun PlayerList(
                 PlayerInfoWidget(
                     player = player,
                     onPlayerEdit = { players[index] = it },
-                    isDealer = dealer == player,
+                    isDealer = index == dealer,
                     setAsDealer = { onChangeDealer(index) },
                 )
             }

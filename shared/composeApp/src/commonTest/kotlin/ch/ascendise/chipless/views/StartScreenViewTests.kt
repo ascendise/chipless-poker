@@ -20,7 +20,7 @@ class StartScreenViewTests {
         val navigatorSpy = NavigatorSpy()
         var buttonText = ""
         setContent {
-            StartScreenView(StartScreenViewModel(navigatorSpy))
+            StartScreenView(StartMenuViewModel(navigatorSpy))
             buttonText = stringResource(buttonTextResource)
         }
         //Act

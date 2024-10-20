@@ -27,7 +27,7 @@ class CreateGameViewModelTests {
         viewModel.createNewPlayer()
         //Assert
         assertNotNull(viewModel.state.dealer)
-        assertSame(viewModel.state.players.first(), viewModel.state.dealer.value)
+        assertEquals(0, viewModel.state.dealer.value)
     }
 
     @Test
@@ -39,7 +39,7 @@ class CreateGameViewModelTests {
         //Act
         viewModel.changeDealer(1)
         //Assert
-        assertSame(viewModel.state.players[1], viewModel.state.dealer.value)
+        assertEquals(1, viewModel.state.dealer.value)
     }
 
     @Test
@@ -49,11 +49,9 @@ class CreateGameViewModelTests {
         viewModel.createNewPlayer()
         viewModel.createNewPlayer()
         //Act
+        val invalidDealer = { viewModel.changeDealer(192034295) }
         //Assert
-        val exception = assertFails {
-            viewModel.changeDealer(192034295)
-        }
-        assertIs<IndexOutOfBoundsException>(exception)
+        assertFailsWith<IndexOutOfBoundsException> { invalidDealer() }
     }
 
     @Test
@@ -87,5 +85,28 @@ class CreateGameViewModelTests {
         assertTrue("Wrong player deleted (Player #1)") { players.any { it.name == "Player #1" } }
         assertTrue("Wrong player deleted (Player #3)") { players.any { it.name == "Player #3" } }
         assertEquals(0, viewModel.state.playersLeft.value)
+    }
+
+    @Test
+    fun shouldCreateGame() {
+        //Arrange
+        val viewModel = CreateGameViewModel()
+        viewModel.createNewPlayer()
+        viewModel.createNewPlayer()
+        //Act
+        val table = viewModel.createGame()
+        //Assert
+        assertNotNull(table)
+    }
+
+    @Test
+    fun shouldThrowExceptionWhenTryingToCreateGameWithNotEnoughPlayers() {
+        //Arrange
+        val viewModel = CreateGameViewModel()
+        viewModel.createNewPlayer() //At least two players are required
+        //Act
+        val createGame = { viewModel.createGame() }
+        //Assert
+        assertFailsWith<InvalidGameException> { createGame() }
     }
 }

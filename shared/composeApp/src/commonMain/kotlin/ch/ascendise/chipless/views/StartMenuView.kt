@@ -8,7 +8,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ch.ascendise.chipless.components.MenuButton
 import chiplesspoker.shared.composeapp.generated.resources.Res
@@ -19,7 +18,7 @@ import chiplesspoker.shared.composeapp.generated.resources.chipless_poker
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-internal fun StartScreenView(viewModel: StartScreenViewModel) {
+internal fun StartScreenView(viewModel: StartMenuViewModel) {
     Column(
         modifier = Modifier.padding(horizontal = 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
