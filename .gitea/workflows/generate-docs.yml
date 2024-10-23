@@ -13,6 +13,7 @@ jobs:
       RUNNER_TOOL_CACHE: /toolcache
     steps:
       - uses: actions/checkout@v4
+      - uses: fregante/setup-git-user@v2
       - name: Checkout temporary branch
         run: git switch -c tmp
       - name: Set up JDK 17
@@ -34,8 +35,8 @@ jobs:
           git commit -m "dokka"
           git switch gitea-pages
           git pull
-          git checkout tmp -- build/dokka
-          mv build/dokka/* .
+          git checkout tmp -- build/dokka/
+          mv build/dokka/htmlMultiModule/* .
       - name: Push docs to gitea-pages
         run: |
               git add .
