@@ -44,7 +44,7 @@ jobs:
           rm -rf .gradle
       - name: Recreate gitea-pages.toml
         run: |
-          echo 'allowedrefs["gitea-pages"]' >> gitea-pages.toml
+          echo 'allowedrefs=["gitea-pages"]' >> gitea-pages.toml
       - name: Push docs to gitea-pages
         run: |
               git add .
