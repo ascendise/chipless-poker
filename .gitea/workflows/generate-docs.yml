@@ -47,5 +47,5 @@ jobs:
       - name: Push docs to gitea-pages
         run: |
               git add .
-              git commit -m "Update docs (${git show-ref origin/main -s})"
+              git commit -m "Update docs ($(git show-ref origin/main -s))"
               git push
