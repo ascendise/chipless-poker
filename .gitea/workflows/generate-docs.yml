@@ -34,8 +34,8 @@ jobs:
       - name: Add docs to gitea-pages branch
         run: |
           git add -f build/dokka
-          git reset --hard 
           git commit -m "dokka"
+          git reset --hard 
           git switch gitea-pages
           git pull
           rm -rf *
