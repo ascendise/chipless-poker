@@ -41,6 +41,7 @@ jobs:
           rm -rf *
           git checkout tmp -- build/dokka/
           mv build/dokka/htmlMultiModule/* .
+          rm -rf .gradle
       - name: Recreate gitea-pages.toml
         run: |
           echo 'allowedrefs["gitea-pages"]' >> gitea-pages.toml
