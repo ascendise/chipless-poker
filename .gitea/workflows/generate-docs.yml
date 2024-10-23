@@ -14,6 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: fregante/setup-git-user@v2
+      - name: Fetch all
+        run: git fetch --all
       - name: Checkout temporary branch
         run: git switch -c tmp
       - name: Set up JDK 17
@@ -35,8 +37,12 @@ jobs:
           git commit -m "dokka"
           git switch gitea-pages
           git pull
+          rm -rf *
           git checkout tmp -- build/dokka/
           mv build/dokka/htmlMultiModule/* .
+      - name: Recreate gitea-pages.toml
+        run: |
+          echo 'allowedrefs["gitea-pages"]' >> gitea-pages.toml
       - name: Push docs to gitea-pages
         run: |
               git add .
