@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Table</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            ChiplessPoker
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":shared:pokertracker:dokkaHtmlPartial/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="pokertracker::ch.ascendise.pokertracker/Table///PointingToDeclaration//2123264849">
+  <div class="breadcrumbs"><a href="../../index.html">pokertracker</a><span class="delimiter">/</span><a href="../index.html">ch.ascendise.pokertracker</a><span class="delimiter">/</span><span class="current">Table</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Table</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Table</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">players<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="../-player/index.html">Player</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">startingDealer<span class="token operator">: </span><a href="../-player/index.html">Player</a><span class="token punctuation">, </span></span><span class="parameter ">blinds<span class="token operator">: </span><a href="../-blinds/index.html">Blinds</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Main interface of the poker game</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>players</span></span></u></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>starting</span><wbr><span><span>Dealer</span></span></u></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>blinds</span></span></u></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="1872387367%2FConstructors%2F2123264849" anchor-label="Table" id="1872387367%2FConstructors%2F2123264849" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-table.html"><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1872387367%2FConstructors%2F2123264849"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">players<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="../-player/index.html">Player</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">startingDealer<span class="token operator">: </span><a href="../-player/index.html">Player</a><span class="token punctuation">, </span></span><span class="parameter ">blinds<span class="token operator">: </span><a href="../-blinds/index.html">Blinds</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Creates a new game of poker with the first round initialized</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-320292366%2FProperties%2F2123264849" anchor-label="gameInfo" id="-320292366%2FProperties%2F2123264849" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="game-info.html"><span>game</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-320292366%2FProperties%2F2123264849"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="game-info.html">gameInfo</a><span class="token operator">: </span><a href="../-game-info/index.html">GameInfo</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="320760724%2FFunctions%2F2123264849" anchor-label="call" id="320760724%2FFunctions%2F2123264849" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="call.html"><span><span>call</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="320760724%2FFunctions%2F2123264849"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="call.html"><span class="token function">call</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Calls the last bet</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="652085728%2FFunctions%2F2123264849" anchor-label="check" id="652085728%2FFunctions%2F2123264849" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="check.html"><span><span>check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="652085728%2FFunctions%2F2123264849"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="check.html"><span class="token function">check</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Check the current bet</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1414404271%2FFunctions%2F2123264849" anchor-label="fold" id="-1414404271%2FFunctions%2F2123264849" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fold.html"><span><span>fold</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1414404271%2FFunctions%2F2123264849"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="fold.html"><span class="token function">fold</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Remove yourself from the game, forfeiting all made bets</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1723592194%2FFunctions%2F2123264849" anchor-label="raise" id="-1723592194%2FFunctions%2F2123264849" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="raise.html"><span><span>raise</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1723592194%2FFunctions%2F2123264849"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="raise.html"><span class="token function">raise</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">chips<span class="token operator">: </span><a href="../../ch.ascendise.pokertracker.chips/-chips-balance/-chips/index.html">ChipsBalance.Chips</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Creates a new bet that must be higher than the current bet</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1913795341%2FFunctions%2F2123264849" anchor-label="selectWinner" id="1913795341%2FFunctions%2F2123264849" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":shared:pokertracker:dokkaHtmlPartial/commonMain" data-filterable-set=":shared:pokertracker:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="select-winner.html"><span>select</span><wbr><span><span>Winner</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1913795341%2FFunctions%2F2123264849"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":shared:pokertracker:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="select-winner.html"><span class="token function">selectWinner</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">player<span class="token operator">: </span><a href="../-player/index.html">Player</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Selects winner of the game</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

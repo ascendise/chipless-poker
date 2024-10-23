@@ -1,0 +1,13 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/composeApp/[root]/index.html
+$dokka.location://MainViewController/#/PointingToDeclaration/composeApp/[root]/-main-view-controller.html
+module:composeApp
+ch.ascendise.chipless
+ch.ascendise.chipless.components
+ch.ascendise.chipless.views.gamemanagement
+ch.ascendise.chipless.widgets
+module:pokertracker
+ch.ascendise.pokertracker
+ch.ascendise.pokertracker.chips
+ch.ascendise.pokertracker.engine
