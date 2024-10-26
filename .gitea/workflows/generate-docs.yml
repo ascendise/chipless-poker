@@ -1,0 +1,55 @@
+name: Deploy dokka docs to Gitea Pages
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      RUNNER_TOOL_CACHE: /toolcache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: fregante/setup-git-user@v2
+      - name: Fetch all
+        run: git fetch --all
+      - name: Checkout temporary branch
+        run: git switch -c tmp
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Make gradlew executable
+        run: chmod u+x gradlew
+      - name: Generate Dokka docs
+        run: ./gradlew dokkaHtmlMultiModule
+      - name: Add docs to gitea-pages branch
+        run: |
+          git add -f build/dokka
+          git commit -m "dokka"
+          git reset --hard 
+          git switch gitea-pages
+          git pull
+          rm -rf *
+          git checkout tmp -- build/dokka/
+          mv build/dokka/htmlMultiModule/* .
+          rm -rf .gradle
+      - name: Recreate gitea-pages.toml
+        run: |
+          echo '
+          allowedrefs=["gitea-pages"]
+          defaultRef="gitea-pages"
+          ' >> gitea-pages.toml
+      - name: Push docs to gitea-pages
+        run: |
+              git add .
+              git commit -m "Update docs ($(git show-ref origin/main -s))"
+              git push
