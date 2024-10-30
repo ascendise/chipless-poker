@@ -9,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ch.ascendise.chipless.Display
 import ch.ascendise.chipless.components.MenuButton
+import ch.ascendise.chipless.getDisplay
 import chiplesspoker.shared.composeapp.generated.resources.Res
 import chiplesspoker.shared.composeapp.generated.resources.create_new_game_button
 import chiplesspoker.shared.composeapp.generated.resources.settings_button
