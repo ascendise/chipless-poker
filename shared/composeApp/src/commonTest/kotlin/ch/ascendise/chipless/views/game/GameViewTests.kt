@@ -33,4 +33,23 @@ class GameViewTests {
         assertEquals(Display.Orientation.Landscape, display?.orientation)
 
     }
+
+    @OptIn(ExperimentalTestApi::class)
+    @Test
+    fun shouldRenderAllPlayers() = runComposeUiTest {
+        //Arrange
+        val players = arrayOf(
+            PlayerModel("Player 1", 100),
+            PlayerModel("Player 2", 100))
+
+        //Act
+        setContent {
+            GameView(
+                players = players
+            )
+        }
+        //Assert
+        onNodeWithText("Player 1").assertExists("Player 1 did not get rendered!")
+        onNodeWithText("Player 2").assertExists("Player 2 did not get rendered!")
+    }
 }
