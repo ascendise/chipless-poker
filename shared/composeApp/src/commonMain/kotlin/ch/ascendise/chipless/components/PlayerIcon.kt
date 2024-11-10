@@ -16,22 +16,13 @@ import androidx.compose.ui.text.font.FontWeight
 import ch.ascendise.chipless.colorutils.random
 
 @Composable
-fun Player(
-    name: String,
+fun PlayerIcon(
     modifier: Modifier = Modifier,
-    color: Color = Color.random(),) {
-    Box(modifier = modifier) {
-        Icon(
-            imageVector = Icons.Filled.Face,
-            contentDescription = "Circle representing player",
-            modifier = Modifier
-                .background(color, CircleShape)
-                .fillMaxSize())
-        Text(
-            text = name,
-            modifier = Modifier.align(Alignment.Center),
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-        )
-    }
+    color: Color = Color.random()) {
+    Icon(
+        imageVector = Icons.Filled.Face,
+        contentDescription = "Circle representing player",
+        modifier = modifier
+            .background(color, CircleShape)
+            .fillMaxSize())
 }

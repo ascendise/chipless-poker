@@ -13,4 +13,5 @@
     <string name="player-name">Player name</string>
     <string name="chip-content-description">Image of poker chip with numeric value</string>
     <string name="pokertable-content-description">Image of poker table with green surface and woodbrown rim</string>
+    <string name="player-content-description">Colored circle with face representing player</string>
 </resources>
