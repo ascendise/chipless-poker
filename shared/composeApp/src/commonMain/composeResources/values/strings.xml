@@ -11,4 +11,6 @@
     <string name="configure-game">Configure Game</string>
     <string name="start-game">Start Game</string>
     <string name="player-name">Player name</string>
+    <string name="chip-content-description">Image of poker chip with numeric value</string>
+    <string name="pokertable-content-description">Image of poker table with green surface and woodbrown rim</string>
 </resources>

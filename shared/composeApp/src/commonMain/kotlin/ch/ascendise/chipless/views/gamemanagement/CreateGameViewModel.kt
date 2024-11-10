@@ -95,7 +95,7 @@ class CreateGameViewModel : ViewModel() {
         val players: SnapshotStateList<CreatePlayerModel> = mutableStateListOf(),
         val playersLeft: MutableState<Int> = mutableStateOf(2),
         val dealer: MutableState<Int?> = mutableStateOf(null),
-        val balancePerPlayer: MutableState<Int> = mutableStateOf(100)
+        val balancePerPlayer: MutableState<Int> = mutableStateOf(100),
     )
 }
 
