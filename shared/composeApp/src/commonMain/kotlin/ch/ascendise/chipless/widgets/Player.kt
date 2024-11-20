@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ch.ascendise.chipless.colorutils.random
 import ch.ascendise.chipless.components.Chip
@@ -30,6 +31,8 @@ fun Player(
             text = name,
             modifier = Modifier.align(Alignment.Center),
             fontWeight = FontWeight.Bold,
+            overflow = TextOverflow.Visible,
+            softWrap = false,
             color = Color.White,
         )
     }

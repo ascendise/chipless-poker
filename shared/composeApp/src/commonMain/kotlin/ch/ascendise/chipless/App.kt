@@ -12,9 +12,11 @@ import ch.ascendise.chipless.views.SettingsView
 import ch.ascendise.chipless.views.StartScreenView
 import ch.ascendise.chipless.views.StartMenuViewModel
 import ch.ascendise.chipless.views.game.GameView
+import ch.ascendise.chipless.views.game.PlayerModel
 import ch.ascendise.chipless.views.gamemanagement.CreateGameView
 import ch.ascendise.chipless.views.gamemanagement.CreateGameViewModel
 import ch.ascendise.chipless.views.gamemanagement.LoadGamesView
+import ch.ascendise.chipless.widgets.Player
 import ch.ascendise.pokertracker.Table
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -45,7 +47,15 @@ fun App() {
             composable(Routes.LoadGames.name) { LoadGamesView() }
             composable(Routes.Settings.name) { SettingsView() }
             composable(Routes.Game.name) {
-                GameView()
+                GameView(
+                    players = arrayOf(
+                        PlayerModel("Markus", 100),
+                        PlayerModel("Steve", 100),
+                        PlayerModel("Herbert", 100),
+                        PlayerModel("Snoopy", 100),
+                        PlayerModel("Niguel", 100),
+                    )
+                )
             }
         }
     }

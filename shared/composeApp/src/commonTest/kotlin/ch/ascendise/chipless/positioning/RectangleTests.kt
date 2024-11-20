@@ -4,24 +4,28 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.test.*
 
-class EllipseTests {
+class RectangleTests {
 
     @Test
-    fun `should split ellipse evenly and return all points on the ellipse`() {
+    fun `should split rectangle evenly and return all points on the rectangle`() {
         //Arrange
-        val ellipse = Ellipse(10.0, 10.0)
+        val rectangle = Rectangle(20.0, 20.0)
         //Act
-        var points = ellipse.splitEvenly(4)
+        var points = rectangle.splitEvenly(8)
         //Assert
         //Round values in points so tests dont fail because of floating point inaccuracy
         points = points
             .map { Point(it.x.round(4), it.y.round(4)) }
             .toTypedArray()
         val expectedPoints = arrayOf(
-            Point(10.0, 0.0),
             Point(0.0, 10.0),
-            Point(-10.0, 0.0),
+            Point(10.0, 10.0),
+            Point(10.0, 0.0),
+            Point(10.0, -10.0),
             Point(0.0, -10.0),
+            Point(-10.0, -10.0),
+            Point(-10.0, 0.0),
+            Point(-10.0, 10.0),
         )
         assertContentEquals(expectedPoints, points)
     }
