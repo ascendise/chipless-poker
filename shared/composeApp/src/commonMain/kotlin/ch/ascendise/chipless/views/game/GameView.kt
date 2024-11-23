@@ -23,7 +23,7 @@ fun GameView(
 ) {
     val display = getDisplay()
     display.orientation = Display.Orientation.Landscape
-    val rectangle = Rectangle(500.0,  300.0)
+    val rectangle = Rectangle(750.0,  350.0)
     val points = rectangle.splitEvenly(players.count())
     Box(modifier = Modifier.fillMaxSize()) {
         PokerTable(modifier = Modifier.fillMaxSize())

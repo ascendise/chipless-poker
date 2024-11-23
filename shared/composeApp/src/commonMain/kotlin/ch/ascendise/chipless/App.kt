@@ -27,7 +27,7 @@ fun App() {
     val navigator = NavigatorImpl(navController)
     var table: Table? = null
     PokerTheme(modifier = Modifier.fillMaxSize()) {
-        NavHost(navController = navController, startDestination = Routes.Start.name) {
+        NavHost(navController = navController, startDestination = Routes.Game.name) {
             composable(Routes.Start.name) {
                 StartScreenView(StartMenuViewModel(navigator))
             }
@@ -52,6 +52,9 @@ fun App() {
                         PlayerModel("Markus", 100),
                         PlayerModel("Steve", 100),
                         PlayerModel("Herbert", 100),
+                        PlayerModel("Herbert", 100),
+                        PlayerModel("Snoopy", 100),
+                        PlayerModel("Snoopy", 100),
                         PlayerModel("Snoopy", 100),
                         PlayerModel("Niguel", 100),
                     )
