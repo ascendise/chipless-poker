@@ -1,9 +1,11 @@
 package ch.ascendise.chipless.positioning
 
-internal class Rectangle(
-    val width: Double,
-    val height: Double
-) {
+internal class Rectangle(val width: Double, val height: Double) {
+
+    init {
+        if(width <= 0 || height <= 0)
+            throw IllegalArgumentException("Height and width MUST be greater than zero")
+    }
 
     fun splitEvenly(points: Int): Array<Point> {
         val vertices: MutableList<Point> = mutableListOf()

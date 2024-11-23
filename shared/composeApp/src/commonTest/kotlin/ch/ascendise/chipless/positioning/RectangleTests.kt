@@ -50,4 +50,9 @@ class RectangleTests {
         return value
     }
 
+    @Test
+    fun `should not allow rectangle with zero width or height`() {
+        assertFailsWith<IllegalArgumentException>{Rectangle(0.0, 0.0)}
+    }
+
 }
