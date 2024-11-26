@@ -23,6 +23,7 @@ import ch.ascendise.chipless.getDisplay
 import ch.ascendise.chipless.positioning.Point
 import ch.ascendise.chipless.positioning.Rectangle
 import ch.ascendise.chipless.widgets.Player
+import kotlin.math.cos
 
 @Composable
 fun GameView(
