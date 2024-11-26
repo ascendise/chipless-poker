@@ -29,26 +29,10 @@ import kotlin.math.cos
 fun GameView(
     players: Array<PlayerModel> = emptyArray(),
 ) {
-    @Composable
-    fun calculateSeatCoordinates(tableSize: IntSize, offset: Int): Array<Point> {
-        val density = LocalDensity.current
-        if(tableSize == IntSize.Zero)
-            return emptyArray()
-        val offsetTableSize = with(tableSize) { IntSize(width - offset, height - offset)}
-        val tableSizeDp = Rectangle(
-            with(density) { offsetTableSize.width.toDp().value.toDouble() },
-            with(density) { offsetTableSize.height.toDp().value.toDouble() },
-        )
-        val rectangle = Rectangle(
-            tableSizeDp.width,
-            tableSizeDp.height
-        )
-        return rectangle.splitEvenly(players.count())
-    }
     val display = getDisplay()
     display.orientation = Display.Orientation.Landscape
     var tableSize by remember { mutableStateOf(IntSize.Zero) }
-    val points = calculateSeatCoordinates(tableSize, 200)
+    val points = calculateSeatCoordinates(tableSize, 200, players.count(), LocalDensity.current)
     Box(modifier = Modifier.fillMaxSize()
         .onGloballyPositioned { tableSize = it.size }) {
         PokerTable(modifier = Modifier.fillMaxSize())
@@ -67,4 +51,24 @@ fun GameView(
             }
         }
     }
+}
+
+internal fun calculateSeatCoordinates(
+    tableSize: IntSize,
+    offset: Int,
+    playerCount: Int,
+    density: Density): Array<Point> {
+
+    if(tableSize == IntSize.Zero)
+        return emptyArray()
+    val offsetTableSize = with(tableSize) { IntSize(width - offset, height - offset)}
+    val tableSizeDp = Rectangle(
+        with(density) { offsetTableSize.width.toDp().value.toDouble() },
+        with(density) { offsetTableSize.height.toDp().value.toDouble() },
+    )
+    val rectangle = Rectangle(
+        tableSizeDp.width,
+        tableSizeDp.height
+    )
+    return rectangle.splitEvenly(playerCount)
 }

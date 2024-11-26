@@ -9,7 +9,7 @@ internal class Rectangle(val width: Double, val height: Double) {
 
     fun splitEvenly(points: Int): Array<Point> {
         val vertices: MutableList<Point> = mutableListOf()
-        val perimeter = width * 2 + height * 2
+        val perimeter = (height + width) * 2
         val steps = perimeter / points
         var point = Point(0.0, height / 2)
         while(point.x <= width / 2) {
